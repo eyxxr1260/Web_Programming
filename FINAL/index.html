@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>statistic for covid-19</title>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="./test.css" rel="stylesheet" type="text/css">
+  <script>
+
+    function progress() {
+      var dist = $("#dist").val();
+      var date = $("#date").val();
+      $.ajax({
+        url: "test.php",
+        data: {
+          dist: dist,
+          date: date,
+        },
+        type: "POST",
+        datatype: "html",
+        success: function (output) {
+          $("#out").html(output);
+        },
+        error: function () {
+          alert("Request failed.");
+        },
+      });
+
+      /*$.ajax({
+        url: './points.csv',
+        dataType: 'text',
+      }).done(successFunction);*/
+    }
+
+
+  </script>
+</head>
+
+<body>
+  <!--導覽列-->
+  <nav class="navbar navbar-default">
+    <!--navbar-fixed-top-->
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="index.html" style="font-size:23px; color: rgb(6, 46, 46);"><b>消費足跡紀錄系統&nbsp;<i
+              class="fas fa-user-edit"></i></b></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="sr-only"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav" style="font-size:17px">
+          <li><a href="chart.html" >Charts&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+            <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"/>
+          </svg></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" style="font-size:17px">
+          <li><a href="login.html">登入&nbsp;<i class="glyphicon glyphicon-log-in"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--導覽列-->
+  <h2>COVID-19快速查詢</h2>
+  <form method="post" action="#" class="center">
+
+    <label>選擇縣市:</label>
+    <select id="dist" class="sel_wid">
+      <option>台北市</option>
+      <option>新北市</option>
+      <option>桃園市</option>
+      <option>基隆市</option>
+      <option>宜蘭縣</option>
+      <option>連江縣</option>
+      <option>新竹市</option>
+      <option>新竹縣</option>
+      <option>苗栗縣</option>
+      <option>台中市</option>
+      <option>南投縣</option>
+      <option>彰化縣</option>
+      <option>雲林縣</option>
+      <option>嘉義縣</option>
+      <option>台南市</option>
+      <option>高雄市</option>
+      <option>屏東縣</option>
+      <option>澎湖縣</option>
+      <option>花蓮縣</option>
+      <option>台東縣</option>
+    </select>
+
+    <label class="where ">時間:</label>
+    <!-- <input placeholder="yyyy-mm-dd" id="date" name="date" type="text" class="where inputStyle"
+      pattern="[0-9]d{4}-[0-9]d{2}-[0-9]d{2}" required /> -->
+      <input  id="date" name="date" type="date" class="where inputStyle"
+       required />
+
+    <p>
+      <input type="button" class="btn" value="Search" onclick="progress()" />
+    </p>
+  </form>
+  <div id="out"></div>
+  <!---->
+  <div id="piechart" style="width: 900px; height: 500px"></div>
+  <script>
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+body{
+	/* background-color: #ADC0CC ; */
+	/*filter:Alpha(opacity=100);*/
+	 background-color: rgba(183, 196, 195, 0.616); 
+	/* background-color: rgba(5, 95, 88, 0.904); */
+
+}
+
+#Reg-text{
+	text-align: center;
+	margin-top: 100px;
+}
+#ShowForm{
+	height:30px;
+	width:300px;
+}
+#ToDoLists{
+	width:600px;
+	margin-left:auto; 
+	margin-right:auto;
+	border:1px solid #eee;
+}
+
+table{
+	margin-left:auto; 
+	margin-right:auto;
+	border:1px solid #eee;
+}
+
+#sign {
+	width: 350px;
+	margin:20px auto 0;
+}
+
+ .inputStyle{
+	width: 100%;
+	height: 40px;
+	outline: none;
+	border:1px solid #eee;
+	border-radius: 5px;
+	text-indent: 10px;
+	font-size: 16px;
+	/*font-family: "標楷體";*/
+	text-align: center;
+	margin-bottom:10px;
+}
+
+.btnStyle{
+	width: 100%;
+	height: 45px;
+	outline: none;
+	border-radius: 5px;
+	font-size: 16px;
+	/*font-family: "標楷體";*/
+	background: #258292;
+	border:none;
+	color: #fff;
+}
+
+.btnStyle:hover{
+	background: #00B7C3;
+	cursor: pointer;
+}
+
+.btn{
+	width: 55px;
+	height: 25px;
+	outline: none;
+	border-radius: 5px;
+	font-size: 8px;
+	background: #5D6D7E;
+	border:none;
+	color: #fff;
+}
+
+.btn:hover{
+	background: #34495E;
+	cursor: pointer;
+	color: #fff;
+}
+
+#login{
+	width: 350px;
+	margin:20px auto 0;
+}
+.newInputStyle{
+	width: 150px;
+	height: 40px;
+	outline: none;
+	border:1px solid #eee;
+	border-radius: 5px;
+	text-indent: 10px;
+	font-size: 16px;
+	text-align: center;
+	margin-bottom:10px;
+}
+#newBtnStyle{
+	width: 100px;
+	height: 45px;
+	outline: none;
+	border-radius: 5px;
+	font-size: 16px;
+	background: #666;
+	border:none;
+	color: #fff;
+}
+
+#newBtnStyle:hover{
+	background: #333;
+	cursor: pointer;
+}
+
+#Result{
+	width: 350px;
+	margin:30px auto;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+}

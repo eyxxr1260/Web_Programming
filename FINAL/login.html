@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">-->
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">-->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+        <link rel="stylesheet" type="text/css" href="Reg-text.css">
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            function initial()
+            {
+                //document.getElementById("ALL").style.visibility=hidden;
+                //document.getElementById("ALL").style.display = "none";
+                document.getElementById("addList").style.display = "none";
+                //document.getElementById("addList").style.visibility=hidden;
+                document.getElementById("ToDoLists").style.display = "none";
+                //document.getElementById("ToDoLists").style.visibility=hidden;
+                document.getElementById("editList").style.display = "none";
+                //document.getElementById("editList").style.visibility="hidden";
+                document.getElementById("ShowForm").style.display = "none";
+            }
+           
+            var User;
+
+            function login() {
+                var PW = $("#PW").val();
+                //var User = $("#User").val(); 
+                User = $("#User").val();    
+                $.ajax({
+                    url: "login.php",
+                    data: {
+                        User:User,
+                        PW:PW
+                    },
+                    type: "POST",
+                    datatype: "html",
+                    success: function( VALUE ) {
+                        $( "#ShowForm" ).html(VALUE);
+                        switch(VALUE){
+                                case "Successful user login":
+                                    document.getElementById("login").style.display="none";
+                                    //document.getElementById("ALL").style.display = "block";
+                                    document.getElementById("addList").style.display = "block";
+                                    document.getElementById("ToDoLists").style.display = "block";
+                                    document.getElementById("editList").style.display = "none";
+                                    // document.getElementById("editList").style.visibility="visible";//???
+                                    //document.getElementById("ALL").style.display = "block";
+                                    document.getElementById("addList").innerHTML=
+                                    '<form method="post" style="text-align: center" >'+
+                                        '<input type="text" '+
+                                        'class="newInputStyle"'+
+                                        'id="newFootPrint" '+
+                                        'placeholder="食衣住行地點" required="required" />&nbsp;'+
+                                    //--------------------------------------------------------------
+                                        '<input type="number" '+
+                                        'class="newInputStyle"'+
+                                        'id="newCost"'+
+                                        'placeholder="消費金額" required="required"/>&nbsp;'+
+                                    //--------------------------------------------------------------
+                                        '<input type="date" '+
+                                        'class="newInputStyle" '+
+                                        'id="newDate" required="required"/>&nbsp;'+
+                                    //--------------------------------------------------------------
+                                        '<input type="button" '+
+                                        'id="newBtnStyle" '+
+                                        'class="test"'+
+                                        'onclick="ToAdd()" '+
+                                        'value="AddTask"/>'+
+                                        '</form>';
+                                    TaskTable();
+                                    break;
+                                case "Password is incorrect":
+                                    alert("Password is incorrect");
+                                    break;
+                                default:
+                                    alert("This account isn't existed");
+                        }
+                    }
+                }); 
+            }
+
+            function TaskTable()//User傳入
+            {
+            //var User = $("#User").val(); 
+                $.ajax({
+                    url: "TaskTable.php",
+                    data: {
+                        User:User
+                    },
+                    type: "POST",
+                    datatype: "html",
+                    success: function( VALUE ) {
+                        document.getElementById("ToDoLists").innerHTML=VALUE;
+                    }
+                });
+            }
+
+            function ToAdd()
+            {
+                var FootPrint=$("#newFootPrint").val();
+                var Cost=$("#newCost").val();
+                //var User = $("#User").val(); 
+                //var date=document.getElementById("date").value;
+                var date= $("#newDate").val(); 
+                $.ajax({
+                    url: "addTask.php",
+                    data: {
+                        User:User,
+                        date:date,
+                        FootPrint:FootPrint,
+                        Cost:Cost
+                    },
+                    type: "POST",
+                    datatype: "html",
+                    success: function(VALUE ) {
+                        alert("Successfully added!");
+                        TaskTable();
+                    }
+                });
+            }                                                                                                                                                      
+
+            function ToDelete()
+            {
+                var key= $(event.target)[0].id;
+                key = key.substring(0, key.length - 1);
+                $.ajax({
+                    url: "deleteTask.php",
+                    data: {
+                        key:key
+                    },
+                    type: "POST",
+                    datatype: "html",
+                    success: function( VALUE ) {
+                        alert("Successfully deleted!");
+                        TaskTable();
+                    }
+                }); 
+            }
+
+            function ToEdit()
+            {
+                var key= $(event.target)[0].id;
+                key = key.substring(0, key.length - 1);
+                // var NEWplace = window.prompt('編輯足跡');
+                // var NEWcost = window.prompt('編輯金額'); 
+                // var NEWdate = window.prompt('編輯日期','0000-00-00'); 
+                document.getElementById("editList").innerHTML=
+                '<form id="editList" style="text-align: center">'+'<p>'+
+                    '<input type="text"'+
+                        'placeholder="編輯足跡"'+
+                        'class="newInputStyle"  '+
+                        'id="changeFootPrint" '+
+                        'required />&nbsp; '+
+                    //----------------------------------
+                    '<input type="text"'+
+                        'placeholder="編輯金額"'+
+                        'class="newInputStyle"  '+
+                        'id="changeCost" '+
+                        'required />&nbsp; '+
+                    //----------------------------------    
+                    '<input type="date" '+
+                        'class="newInputStyle" '+
+                        'id="changeDate" '+
+                        'required />&nbsp;'+
+                    //-----------------------------------
+                    '<input type="button"'+
+                        ' id="newBtnStyle" '+
+                        'onclick="EditList('+key+')" '+
+                        'value="Edit">'+
+                    '</p>'+'</form>'
+                    ;
+                document.getElementById("editList").style.display = "block";
+            }
+
+            function EditList(key)//KEY是清單指定欄位的編號
+            {
+                var changeDate = $("#changeDate").val();
+                var changeFootPrint = $("#changeFootPrint").val();
+                var changeCost = $("#changeCost").val();
+                $.ajax({
+                    url: "editTask.php",
+                    data: {
+                        key:key,
+                        changeFootPrint:changeFootPrint,
+                        changeDate:changeDate,
+                        changeCost:changeCost
+                    },
+                    type: "POST",
+                    datatype: "html",
+                    success: function( VALUE ) {
+                        alert("Successfully edited!");
+                        TaskTable();
+                    }
+                }); 
+                document.getElementById("editList").style.display = "none";
+            }
+
+            window.addEventListener("load",initial,false);
+        </script>
+    </head>
+    
+    <body>
+        <!--導覽列-->
+        <nav class="navbar navbar-default">
+            <!--navbar-fixed-top-->
+            <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html" style="font-size:23px; color: rgb(6, 46, 46);"><b>消費足跡紀錄系統&nbsp;<i
+                    class="fas fa-user-edit"></i></b></a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" style="font-size:17px">
+                <li><a href="chart.html" >Charts&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+                    <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"/>
+                </svg></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="font-size:17px">
+                <li><a href="login.html">登出&nbsp;<i class="glyphicon glyphicon-log-in"></i></a></li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+        <h1 id="Reg-text">Tracking & Accounting</h1>
+        <div id="login">
+            <div id="ShowForm"></div>
+            <form>
+                <input type="text"
+                        id="User"
+                        class="inputStyle" 
+                        placeholder="Username"
+                        />
+                <input type="password" 
+                        id="PW" 
+                        class="inputStyle" 
+                        placeholder="Password"
+                        />
+                <input type="button" 
+                        class="btnStyle"
+                        onclick="login()" 
+                        value="Login"
+                        />
+                <br><h3 style="text-align: center">Not a member yet?</h3><br>
+                <input type="button" 
+                        class="btnStyle" 
+                        onclick="location.href='register.html'" 
+                        value="Register"
+                        />
+            </form>
+        </div>
+        
+        <div id="addList"></div>
+        <div id ="ToDoLists"></div>  
+        <div id="editList"></div> 
+    </body>
+</html>

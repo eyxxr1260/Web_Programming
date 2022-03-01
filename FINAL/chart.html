@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CHART</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CHART</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    body {
+      background-color: rgba(183, 196, 195, 0.616);
+    }
+    </style>
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['line'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'Week');
+      data.addColumn('number', 'Populartiy');
+
+      data.addRows([
+        [1, 26],
+        [2, 29],
+        [3, 29],
+        [4, 23],
+        [5, 10],
+        [6, 6],
+        [7, 3],
+        [8, 10],
+        [9, 19],
+        [10, 17],
+        [11, 13],
+        [12, 21],
+        [13, 28],
+        [14, 8],
+        [15, 17],
+        [16, 31],
+        [17, 59],
+        [18, 157],
+        [19, 1550],
+        [20, 3392],
+        [21, 3145],
+        [22, 2300],
+        [23, 1521],
+        [24, 942],
+        [25, 575],
+        [26, 344],
+        [27, 305],
+        [28, 161],
+        [29, 152],
+        [30, 113],
+        [31, 85],
+        [32, 74],
+        [33, 76],
+        [34, 63],
+        [35, 38],
+        [36, 59],
+        [37, 49],
+        [38, 44],
+        [39, 50],
+        [40, 44],
+        [41, 33],
+        [42, 30],
+        [43, 43],
+        [44, 31],
+        [45, 47],
+        [46, 46],
+        [47, 61],
+        [48, 63],
+        [49, 87],
+        [50, 75],
+        [51, 115],
+        [52, 159],
+        [53, 279]
+      ]);
+
+      var options = {
+        chart: {
+          title: '2021 Number of covid-19 cases per week',
+        },
+        width: 900,
+        height: 500
+      };
+
+      var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+  </script>
+  <script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawPieChart);
+    function drawPieChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['city', 'Populartiy'],
+        ['新北市', 6943],
+        ['台北市', 4879],
+        ['桃園市', 885],
+        ['苗栗縣', 549],
+        ['基隆市', 319],
+        ['彰化縣', 274],
+        ['台中市', 207],
+        ['宜蘭縣', 99],
+        ['新竹縣', 112],
+        ['花蓮縣', 68],
+        ['高雄市', 94],
+        ['台南市', 50],
+        ['新竹市', 43],
+        ['屏東縣', 48],
+        ['南投縣', 38],
+        ['台東縣', 22],
+        ['雲林縣', 22],
+        ['嘉義縣', 32],
+        ['嘉義市', 10],
+        ['澎湖縣', 5],
+        ['連江縣', 4],
+      ]);
+
+      var options = {
+        title: '2021年 各縣市確診數',
+        is3D: true,
+        width: 900,
+        height: 500
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+      chart.draw(data, options);
+    }
+  </script>
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+  <!-- Chart code -->
+  <script>
+    am5.ready(function () {
+
+      // Data
+      var allData = {
+        "202104": {
+          '新北市': 0,
+          '台北市': 0,
+          '桃園市': 0,
+          '苗栗縣': 0,
+          '基隆市': 0,
+          '彰化縣': 0,
+          '台中市': 0,
+          '宜蘭縣': 0,
+          '新竹縣': 0,
+          '花蓮縣': 0,
+          '高雄市': 0,
+          '台南市': 0,
+          '新竹市': 0,
+          '屏東縣': 0,
+          '南投縣': 0,
+          '台東縣': 0,
+          '雲林縣': 0,
+          '嘉義縣': 0,
+          '嘉義市': 0,
+          '澎湖縣': 0,
+          '連江縣': 0
+        },
+        "202105": {
+          '新北市': 3479,
+          '台北市': 2723,
+          '桃園市': 107,
+          '苗栗縣': 0,
+          '基隆市': 132,
+          '彰化縣': 157,
+          '台中市': 133,
+          '宜蘭縣': 67,
+          '新竹縣': 20,
+          '花蓮縣': 32,
+          '高雄市': 47,
+          '台南市': 28,
+          '新竹市': 21,
+          '屏東縣': 27,
+          '南投縣': 20,
+          '台東縣': 14,
+          '雲林縣': 11,
+          '嘉義縣': 8,
+          '嘉義市': 7,
+          '澎湖縣': 5,
+          '連江縣': 4
+        },
+        "202106": {
+          '新北市': 3479,
+          '台北市': 4468,
+          '桃園市': 696,
+          '苗栗縣': 23,
+          '基隆市': 303,
+          '彰化縣': 264,
+          '台中市': 197,
+          '宜蘭縣': 96,
+          '新竹縣': 102,
+          '花蓮縣': 68,
+          '高雄市': 83,
+          '台南市': 50,
+          '新竹市': 38,
+          '屏東縣': 46,
+          '南投縣': 38,
+          '台東縣': 22,
+          '雲林縣': 21,
+          '嘉義縣': 18,
+          '嘉義市': 9,
+          '澎湖縣': 5,
+          '連江縣': 4
+        },
+        "202107": {
+          '新北市': 6500,
+          '台北市': 4809,
+          '桃園市': 783,
+          '苗栗縣': 545,
+          '基隆市': 313,
+          '彰化縣': 272,
+          '台中市': 207,
+          '宜蘭縣': 98,
+          '新竹縣': 110,
+          '花蓮縣': 68,
+          '高雄市': 90,
+          '台南市': 50,
+          '新竹市': 43,
+          '屏東縣': 48,
+          '南投縣': 38,
+          '台東縣': 22,
+          '雲林縣': 22,
+          '嘉義縣': 28,
+          '嘉義市': 10,
+          '澎湖縣': 5,
+          '連江縣': 4
+        },
+        "202108": {
+          '新北市': 6795,
+          '台北市': 4856,
+          '桃園市': 794,
+          '苗栗縣': 549,
+          '基隆市': 316,
+          '彰化縣': 274,
+          '台中市': 207,
+          '宜蘭縣': 99,
+          '新竹縣': 112,
+          '花蓮縣': 68,
+          '高雄市': 94,
+          '台南市': 50,
+          '新竹市': 43,
+          '屏東縣': 48,
+          '南投縣': 38,
+          '台東縣': 22,
+          '雲林縣': 22,
+          '嘉義縣': 32,
+          '嘉義市': 10,
+          '澎湖縣': 5,
+          '連江縣': 4
+        },
+        "202109": {
+          '新北市': 6888,
+          '台北市': 4867,
+          '桃園市': 798,
+          '苗栗縣': 549,
+          '基隆市': 316,
+          '彰化縣': 274,
+          '台中市': 207,
+          '宜蘭縣': 99,
+          '新竹縣': 112,
+          '花蓮縣': 68,
+          '高雄市': 94,
+          '台南市': 50,
+          '新竹市': 43,
+          '屏東縣': 48,
+          '南投縣': 38,
+          '台東縣': 22,
+          '雲林縣': 22,
+          '嘉義縣': 32,
+          '嘉義市': 10,
+          '澎湖縣': 5,
+          '連江縣': 4
+        },
+        "202110": {
+          '新北市': 6926,
+          '台北市': 4870,
+          '桃園市': 798,
+          '苗栗縣': 549,
+          '基隆市': 316,
+          '彰化縣': 274,
+          '台中市': 207,
+          '宜蘭縣': 99,
+          '新竹縣': 112,
+          '花蓮縣': 68,
+          '高雄市': 94,
+          '台南市': 50,
+          '新竹市': 43,
+          '屏東縣': 48,
+          '南投縣': 38,
+          '台東縣': 22,
+          '雲林縣': 22,
+          '嘉義縣': 32,
+          '嘉義市': 10,
+          '澎湖縣': 5,
+          '連江縣': 4
+        },
+        "202111": {
+          '新北市': 6928,
+          '台北市': 4871,
+          '桃園市': 798,
+          '苗栗縣': 549,
+          '基隆市': 319,
+          '彰化縣': 274,
+          '台中市': 207,
+          '宜蘭縣': 99,
+          '新竹縣': 112,
+          '花蓮縣': 68,
+          '高雄市': 94,
+          '台南市': 50,
+          '新竹市': 43,
+          '屏東縣': 48,
+          '南投縣': 38,
+          '台東縣': 22,
+          '雲林縣': 22,
+          '嘉義縣': 32,
+          '嘉義市': 10,
+          '澎湖縣': 5,
+          '連江縣': 4
+        },
+        "202112": {
+          '新北市': 6943,
+          '台北市': 4879,
+          '桃園市': 885,
+          '苗栗縣': 549,
+          '基隆市': 319,
+          '彰化縣': 274,
+          '台中市': 207,
+          '宜蘭縣': 99,
+          '新竹縣': 112,
+          '花蓮縣': 68,
+          '高雄市': 94,
+          '台南市': 50,
+          '新竹市': 43,
+          '屏東縣': 48,
+          '南投縣': 38,
+          '台東縣': 22,
+          '雲林縣': 22,
+          '嘉義縣': 32,
+          '嘉義市': 10,
+          '澎湖縣': 5,
+          '連江縣': 4
+        }
+      };
+
+
+      // Create root element
+      // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+      var root = am5.Root.new("chartdiv");
+
+      root.numberFormatter.setAll({
+        numberFormat: "#a",
+
+        // Group only into M (millions), and B (billions)
+        bigNumberPrefixes: [
+          { number: 1e6, suffix: "M" },
+          { number: 1e9, suffix: "B" }
+        ],
+
+        // Do not use small number prefixes at all
+        smallNumberPrefixes: []
+      });
+
+      var stepDuration = 2000;
+
+
+      // Set themes
+      // https://www.amcharts.com/docs/v5/concepts/themes/
+      root.setThemes([am5themes_Animated.new(root)]);
+
+
+      // Create chart
+      // https://www.amcharts.com/docs/v5/charts/xy-chart/
+      var chart = root.container.children.push(am5xy.XYChart.new(root, {
+        panX: true,
+        panY: true,
+        wheelX: "none",
+        wheelY: "none"
+      }));
+
+
+      // We don't want zoom-out button to appear while animating, so we hide it at all
+      chart.zoomOutButton.set("forceHidden", true);
+
+
+      // Create axes
+      // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+      var yRenderer = am5xy.AxisRendererY.new(root, {
+        minGridDistance: 20,
+        inversed: true
+      });
+      // hide grid
+      yRenderer.grid.template.set("visible", false);
+
+      var yAxis = chart.yAxes.push(am5xy.CategoryAxis.new(root, {
+        maxDeviation: 0,
+        categoryField: "network",
+        renderer: yRenderer
+      }));
+
+      var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+        maxDeviation: 0,
+        min: 0,
+        strictMinMax: true,
+        extraMax: 0.1,
+        renderer: am5xy.AxisRendererX.new(root, {})
+      }));
+
+      xAxis.set("interpolationDuration", stepDuration / 10);
+      xAxis.set("interpolationEasing", am5.ease.linear);
+
+
+      // Add series
+      // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+      var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+        xAxis: xAxis,
+        yAxis: yAxis,
+        valueXField: "value",
+        categoryYField: "network"
+      }));
+
+      // Rounded corners for columns
+      series.columns.template.setAll({ cornerRadiusBR: 5, cornerRadiusTR: 5 });
+
+      // Make each column to be of a different color
+      series.columns.template.adapters.add("fill", function (fill, target) {
+        return chart.get("colors").getIndex(series.columns.indexOf(target));
+      });
+
+      series.columns.template.adapters.add("stroke", function (stroke, target) {
+        return chart.get("colors").getIndex(series.columns.indexOf(target));
+      });
+
+      // Add label bullet
+      series.bullets.push(function () {
+        return am5.Bullet.new(root, {
+          locationX: 1,
+          sprite: am5.Label.new(root, {
+            text: "{valueXWorking.formatNumber('#.# a')}",
+            fill: root.interfaceColors.get("alternativeText"),
+            centerX: am5.p100,
+            centerY: am5.p50,
+            populateText: true
+          })
+        });
+      });
+
+      var label = chart.plotContainer.children.push(am5.Label.new(root, {
+        text: "200204",
+        fontSize: "8em",
+        opacity: 0.2,
+        x: am5.p100,
+        y: am5.p100,
+        centerY: am5.p100,
+        centerX: am5.p100
+      }));
+
+      // Get series item by category
+      function getSeriesItem(category) {
+        for (var i = 0; i < series.dataItems.length; i++) {
+          var dataItem = series.dataItems[i];
+          if (dataItem.get("categoryY") == category) {
+            return dataItem;
+          }
+        }
+      }
+
+      // Axis sorting
+      function sortCategoryAxis() {
+        // sort by value
+        series.dataItems.sort(function (x, y) {
+          return y.get("valueX") - x.get("valueX"); // descending
+          //return x.get("valueX") - y.get("valueX"); // ascending
+        });
+
+        // go through each axis item
+        am5.array.each(yAxis.dataItems, function (dataItem) {
+          // get corresponding series item
+          var seriesDataItem = getSeriesItem(dataItem.get("category"));
+
+          if (seriesDataItem) {
+            // get index of series data item
+            var index = series.dataItems.indexOf(seriesDataItem);
+            // calculate delta position
+            var deltaPosition =
+              (index - dataItem.get("index", 0)) / series.dataItems.length;
+            // set index to be the same as series data item index
+            if (dataItem.get("index") != index) {
+              dataItem.set("index", index);
+              // set deltaPosition instanlty
+              dataItem.set("deltaPosition", -deltaPosition);
+              // animate delta position to 0
+              dataItem.animate({
+                key: "deltaPosition",
+                to: 0,
+                duration: stepDuration / 2,
+                easing: am5.ease.out(am5.ease.cubic)
+              });
+            }
+          }
+        });
+        // sort axis items by index.
+        // This changes the order instantly, but as deltaPosition is set, they keep in the same places and then animate to true positions.
+        yAxis.dataItems.sort(function (x, y) {
+          return x.get("index") - y.get("index");
+        });
+      }
+
+      var year = 202104;
+
+      // update data with values each 1.5 sec
+      var interval = setInterval(function () {
+        year++;
+
+        if (year > 202112) {
+          clearInterval(interval);
+          clearInterval(sortInterval);
+        }
+
+        updateData();
+      }, stepDuration);
+
+      var sortInterval = setInterval(function () {
+        sortCategoryAxis();
+      }, 100);
+
+      function setInitialData() {
+        var d = allData[year];
+
+        for (var n in d) {
+          series.data.push({ network: n, value: d[n] });
+          yAxis.data.push({ network: n });
+        }
+      }
+
+      function updateData() {
+        var itemsWithNonZero = 0;
+
+        if (allData[year]) {
+          label.set("text", year.toString());
+
+          am5.array.each(series.dataItems, function (dataItem) {
+            var category = dataItem.get("categoryY");
+            var value = allData[year][category];
+
+            if (value > 0) {
+              itemsWithNonZero++;
+            }
+
+            dataItem.animate({
+              key: "valueX",
+              to: value,
+              duration: stepDuration,
+              easing: am5.ease.linear
+            });
+            dataItem.animate({
+              key: "valueXWorking",
+              to: value,
+              duration: stepDuration,
+              easing: am5.ease.linear
+            });
+          });
+
+          yAxis.zoom(0, itemsWithNonZero / yAxis.dataItems.length);
+        }
+      }
+
+      setInitialData();
+      setTimeout(function () {
+        year++;
+        updateData();
+      }, 50);
+
+      // Make stuff animate on load
+      // https://www.amcharts.com/docs/v5/concepts/animations/
+      series.appear(1000);
+      chart.appear(1000, 100);
+
+    }); // end am5.ready()
+  </script>
+</head>
+
+<body>
+  <!--導覽列-->
+  <nav class="navbar navbar-default">
+    <!--navbar-fixed-top-->
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="index.html" style="font-size:23px; color: rgb(6, 46, 46);"><b>消費足跡紀錄系統&nbsp;<i
+              class="fas fa-user-edit"></i></b></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="sr-only"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav" style="font-size:17px">
+          <li><a href="chart.html" >Charts&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+            <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"/>
+          </svg></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" style="font-size:17px">
+          <li><a href="login.html">登入&nbsp;<i class="glyphicon glyphicon-log-in"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!--導覽列-->
+  <div class="container" style="margin-top: 3%;">
+    <div class="panel panel-info">
+
+      <div class="panel-body">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#total" data-toggle="tab">累積確診數</a>
+          </li>
+          <li>
+            <a href="#city" data-toggle="tab">各縣市確診數</a>
+          </li>
+          <li>
+            <a href="#week" data-toggle="tab">每周確診數</a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="total">
+            <div id="chartdiv" style="width: 100%; height: 500px;"></div>
+          </div>
+          <div class="tab-pane fade" id="city">
+            <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+          </div>
+          <div class="tab-pane fade" id="week">
+            <div id="linechart_material" style="width: 900px; height: 500px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

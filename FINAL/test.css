@@ -1,0 +1,109 @@
+body {
+  font-family: sans-serif;
+  background-color: rgba(183, 196, 195, 0.616)
+}
+h2{
+  text-align:center;
+}
+.where{
+  text-align: center;
+  
+}
+
+table {
+  background-color: rgba(182, 206, 218, 0.61);
+  border-collapse: collapse;
+  border: 1px solid rgb(148, 144, 144);
+  margin: 5px;
+ 
+
+}
+th{
+  text-align:center;
+}
+td {
+  padding: 5px;
+  text-align:center;
+}
+tr:nth-child(odd) {
+  background-color: white;
+}
+label{
+  font-size: 18px;  
+  margin: 1% 0.5% 2% 1%;
+}
+.center{
+  text-align: center;
+}
+.sel_wid{
+  width: 10%;
+  height: 27px;
+  outline: none;
+  border:1px solid #eee;
+  border-radius: 5px;
+  text-indent: 10px;
+  font-size: 16px;
+  /*font-family: "標楷體";*/
+  text-align: center;
+  margin-bottom:10px;
+  
+}
+.distshow{
+  text-align: center;
+  font-size: 23px;
+  
+}
+.tableshow{
+  margin-left: auto;
+  margin-right: auto;
+  width:70%;
+  height:20%;
+  font-size: 14px;
+}
+#piechart{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.btn{
+  width: 10%;
+  height: 35px;
+  outline: none;
+  border-radius: 5px;
+  font-size: 16px;
+  /*font-family: "標楷體";*/
+  background: #258292;
+  border:none;
+  color: #fff;
+ }
+ 
+ .btn:hover{
+  background: #00B7C3;
+  cursor: pointer;
+ }
+ .inputStyle{
+  width: 13%;
+  height: 27px;
+  outline: none;
+  border:1px solid #eee;
+  border-radius: 5px;
+  text-indent: 10px;
+  font-size: 16px;
+  /*font-family: "標楷體";*/
+  text-align: center;
+  margin-bottom:10px;
+ }
+ .thshow{
+    text-align: center;
+    font-size: 18px;
+ }
+ .tdshow{
+  text-align: left;
+  font-size: 14.9px;
+  
+
+}
+.size{
+  width:70%;
+}

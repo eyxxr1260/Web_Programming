@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+      <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">-->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="Reg-text.css">
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+        <script src="ToRegister.js"></script>
+    </head>
+    
+    <body>
+      <!--導覽列-->
+      <nav class="navbar navbar-default">
+        <!--navbar-fixed-top-->
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="index.html" style="font-size:23px; color: rgb(6, 46, 46);"><b>消費足跡紀錄系統&nbsp;<i
+                  class="fas fa-user-edit"></i></b></a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+              <span class="sr-only"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" style="font-size:17px">
+              <li><a href="chart.html" >Charts&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+                <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"/>
+              </svg></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" style="font-size:17px">
+              <li><a href="login.html">登入&nbsp;<i class="glyphicon glyphicon-log-in"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <h1 id="Reg-text">Sign Up</h1>
+        <div id="sign">
+          <form>
+              <input type="text" 
+                      id="User" 
+                      class="inputStyle" 
+                      placeholder="username"
+                    />
+              <input type="text" 
+                      id="PW" 
+                      class="inputStyle" 
+                      placeholder="password"
+                    />
+              <input type="button" 
+                      class="btnStyle" 
+                      onclick="ToRegister()" 
+                      value="confirm"
+                    />
+          </form>
+        </div>
+    </body>
+</html>
