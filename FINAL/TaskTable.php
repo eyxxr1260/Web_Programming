@@ -31,7 +31,7 @@
     </head> -->
 <?php
     $User=$_POST["User"];
-    $db = mysqli_connect( "localhost" ,"root", "pupu1123yaya","track") ;
+    $db = mysqli_connect( "localhost" ,"root", "password","track") ;
     //mysqli_select_db($db,"hw4" );
     $find=mysqli_query($db,"SELECT * FROM `track` WHERE `UserName`='$User'");
     
