@@ -2,7 +2,7 @@
 $pw = $_POST["PW"];
 $USER = $_POST["User"];
 
-$db = mysqli_connect("localhost", "root", "pupu1123yaya","track");
+$db = mysqli_connect("localhost", "root", "password","track");
 if (!$db) {
     print("X connect the database");
 }
