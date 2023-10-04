@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="Reg-text.css">
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            function initial()
+            {
+                //document.getElementById("ALL").style.visibility=hidden;
+                //document.getElementById("ALL").style.display = "none";
+            document.getElementById("addList").style.display = "none";
+            //document.getElementById("addList").style.visibility=hidden;
+            document.getElementById("ToDoLists").style.display = "none";
+            //document.getElementById("ToDoLists").style.visibility=hidden;
+            document.getElementById("editList").style.display = "none";
+            //document.getElementById("editList").style.visibility="hidden";
+            document.getElementById("ShowForm").style.display = "none";
+            }
+           
+            var User;
+            function login() {
+                var PW = $("#PW").val();
+                //var User = $("#User").val(); 
+                User = $("#User").val();    
+                $.ajax({
+                    url: "login.php",
+                    data: {
+                        User:User,
+                        PW:PW
+                    },
+                    type: "POST",
+                    datatype: "html",
+                    success: function( VALUE ) {
+                        $( "#ShowForm" ).html(VALUE);
+                        //if(strcmp(VALUE,"Successful user login")==0){
+                        if(VALUE=="Successful user login"){
+                            document.getElementById("login").style.display="none";//login部分隱藏
+                            //document.getElementById("ALL").style.display = "block";
+                            document.getElementById("addList").style.display = "block";//顯示
+                            document.getElementById("ToDoLists").style.display = "block";
+                            document.getElementById("editList").style.display = "block";
+                            // document.getElementById("editList").style.visibility="visible";//???
+                            //document.getElementById("ALL").style.display = "block";
+                            document.getElementById("addList").innerHTML=
+                                '<form method="post" style="text-align: center">'+
+                                    '<input type="text" '+
+                                        'class="newInputStyle"'+
+                                        'id="newTask" required '+
+                                    '/>'+
+                            //--------------------------------------------------------------
+                                    '<input type="date" '+
+                                        'class="newInputStyle" '+
+                                        'id="newDate" required'+
+                                    '/>'+
+                            //---------------------------------------------------------------
+                                    '<input type="button" '+
+                                        'id="newBtnStyle" '+
+                                        'onclick="ToAdd()" '+
+                                        'value="AddTask"'+
+                                    '/>'+
+                                '</form>';
+                            TaskTable();
+                        }
+                        else if(VALUE=="Password is incorrect"){
+                            alert("Password is incorrect");
+                        }
+                        else{
+                            alert("This account isn't existed");
+                        }
+                    }
+                }); 
+            }
+
+            function TaskTable()//User傳入
+            {
+            //var User = $("#User").val(); 
+                $.ajax({
+                    url: "TaskTable.php",
+                    data: {
+                        User:User
+                    },
+                    type: "POST",
+                    datatype: "html",
+                    success: function( VALUE ) {
+                        document.getElementById("ToDoLists").innerHTML=VALUE;
+                    }
+                });
+            }
+
+            function ToAdd()
+            {
+                var newDate= $("#newDate").val(); 
+                var newTask= $("#newTask").val(); 
+                $.ajax({
+                    url: "addTask.php",
+                    data: {
+                        User:User,
+                        newDate:newDate,
+                        newTask:newTask
+                    },
+                    type: "POST",
+                    datatype: "html",
+                    success: function(VALUE ) {
+                        alert("New task was successfully been added");
+                        TaskTable();
+                    }
+                });
+            }                                                                                                                                                      
+
+
+            function ToDelete()
+            {
+                var key= $(event.target)[0].id;
+                key = key.substring(0, key.length - 1);
+                $.ajax({
+                    url: "deleteTask.php",
+                    data: {
+                        key:key
+                    },
+                    type: "POST",
+                    datatype: "html",
+                    success: function( VALUE ) {
+                        alert("This task has already been deleted!");
+                        TaskTable();
+                    }
+                }); 
+            }
+
+            function ToEdit()
+            {
+                var key= $(event.target)[0].id;
+                key = key.substring(0, key.length - 1);
+                document.getElementById("editList").innerHTML=
+                '<form id="editList" style="text-align: center">'+'<p>'+
+                    '<input type="text"'+
+                        'id="changeTask" '+
+                        'class="newInputStyle"  '+
+                        'required '+
+                    '/> '+
+                //----------------------------------    
+                    '<input type="date" '+
+                        'class="newInputStyle" '+
+                        'id="changeDate" '+
+                        'required '+
+                    '/>'+
+                //-----------------------------------
+                    '<input type="button"'+
+                        ' id="newBtnStyle" '+
+                        'onclick="EditList('+key+')" '+
+                        'value="Confirm"'+
+                    '/></p>'+
+                '</form>';
+            }
+
+            function EditList(key)//KEY是清單指定欄位的編號
+            {
+                var changeDate = $("#changeDate").val();
+                var changeTask = $("#changeTask").val();
+                $.ajax({
+                    url: "editTask.php",
+                    data: {
+                        key:key,
+                        changeTask:changeTask,
+                        changeDate:changeDate
+                    },
+                    type: "POST",
+                    datatype: "html",
+                    success: function( VALUE ) {
+                        alert("This task has successfully been edited!");
+                        TaskTable();
+                    }
+                }); 
+            }
+
+            window.addEventListener("load",initial,false);
+        </script>
+    </head>
+    
+    <body>
+        <h1 id="Reg-text">To do list</h1>
+        <div id="login">
+            <div id="ShowForm"></div>
+            <form>
+                <input type="text"
+                        id="User"
+                        class="inputStyle" 
+                        placeholder="Username"
+                        />
+                <input type="password" 
+                        id="PW" 
+                        class="inputStyle" 
+                        placeholder="Password"
+                        />
+                <input type="button" 
+                        class="btnStyle" 
+                        onclick="login()" 
+                        value="Login"
+                        />
+                <br><h3 style="text-align: center">Not a member yet?</h3><br>
+                <input type="button" 
+                        class="btnStyle" 
+                        onclick="location.href='register.html';" 
+                        value="Register"
+                        />
+            </form>
+        </div>
+        <div id="addList">
+            <small>Add tasks:</small>
+        </div>
+        <div id="editList"></div> 
+        <div id ="ToDoLists"></div>  
+    </body>
+</html>
